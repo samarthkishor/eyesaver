@@ -9,7 +9,7 @@ First, save the `eyesaver.sh` file to some location where you can find it. I sav
 
 From there, `cd` into the directory where you saved the file and run the command
 
-  chmod +x eyesaver.sh
+    chmod +x eyesaver.sh
 
 to make the script executable.
 
@@ -25,11 +25,11 @@ and change the path to point where you saved the `eyesaver.sh` script.
 
 After that, save the `plist` file and run
 
-  launchctl load com.samarth.eyesaver.plist
+    launchctl load com.samarth.eyesaver.plist
 
 while still in the `~/Library/LaunchAgents` directory. If you see a system dialog pop up, it worked. To unload the job, simply run 
 
-  launchctl unload com.samarth.eyesaver.plist
+    launchctl unload com.samarth.eyesaver.plist
 
 
 ## Sources
