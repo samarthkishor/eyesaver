@@ -2,7 +2,7 @@
 A simple tool for MacOS to combat eyestrain.
 
 ## Description
-Eyesaver displays a system dialog every twenty seconds to remind you to look away from the screen.
+Eyesaver displays a system dialog every twenty minutes to remind you to look away from the screen for twenty seconds.
 
 ## Setup
 First, save the `eyesaver.sh` file to some location where you can find it. I saved it to my `~/Scripts` directory.
