@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 dir="$(pwd)"
 script="$dir/eyesaver.sh"
