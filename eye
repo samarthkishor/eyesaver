@@ -6,6 +6,8 @@ plist="$dir/com.samarth.eyesaver.plist"
 launchPlist="$HOME/Library/LaunchAgents/com.samarth.eyesaver.plist"
 
 init() { \
+    [ "$(uname)" != "Darwin" ] && { echo "This script only works for macOS"; exit 1; }
+
     if [ -f "$launchPlist" ]; then
         echo "Script already initialized!"
     else
@@ -42,4 +44,3 @@ case "$1" in
     s*) status ;;
     *) printf "Usage:\n eye i:\t initialize\n eye r:\t resume\n eye p:\t pause\n eye s:\t status\n" ;;
 esac
-
