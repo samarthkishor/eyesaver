@@ -1,30 +1,37 @@
 #!/bin/sh
 
 dir="$(pwd)"
-script="$dir/eyesaver.sh"
+scriptsDir="$HOME/Scripts"  # directory in which the eyesaver scripts will be saved
+applescriptFile="$scriptsDir/eyesaver_dialog.applescript"
+shFile="$scriptsDir/eyesaver.sh"
 plist="$dir/com.samarth.eyesaver.plist"
 launchPlist="$HOME/Library/LaunchAgents/com.samarth.eyesaver.plist"
 
 init() { \
     [ "$(uname)" != "Darwin" ] && { echo "This script only works for macOS"; exit 1; }
 
-    if [ -f "$launchPlist" ]; then
+    if [ -f "$launchPlist" ] && [ -f "$shFile" ] && [ -f "$applescriptFile" ]; then
         echo "Script already initialized!"
     else
-        chmod +x "$script"
-        cp "$dir/eye" "$HOME/bin/eye"
-        cp "$plist" "$launchPlist"
+        cp "$dir/eye" "$HOME/bin/eye" &&  # make sure ~/bin is in $PATH
+        echo "osascript $applescriptFile" > "$shFile" &&
+        chmod +x "$shFile" &&
+        cp "$dir/eyesaver_dialog.applescript" "$applescriptFile" &&
+        cp "$plist" "$launchPlist" &&
+        echo "eyesaver has been successfully installed"
+    fi
+}
     fi
 }
 
 resume() { \
-    cd "$HOME/Library/LaunchAgents/" && launchctl load com.samarth.eyesaver.plist
+    launchctl load "$launchPlist" &&
     echo "eyesaver is running"
 }
 
 
 pause() { \
-    cd "$HOME/Library/LaunchAgents/" && launchctl unload com.samarth.eyesaver.plist
+    launchctl unload "$launchPlist" &&
     echo "eyesaver is paused"
 }
 
