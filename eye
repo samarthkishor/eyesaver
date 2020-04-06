@@ -21,6 +21,16 @@ init() { \
         echo "eyesaver has been successfully installed"
     fi
 }
+
+uninstall() { \
+    if [ -f "$launchPlist" ] && [ -f "$shFile" ] && [ -f "$applescriptFile" ]; then
+        rm "$HOME/bin/eye" &&
+        rm "$applescriptFile" &&
+        rm "$shFile" &&
+        rm "$launchPlist" &&
+        echo "eyesaver has been successfully uninstalled"
+    else
+        echo "eyesaver has not been installed yet"
     fi
 }
 
@@ -46,8 +56,9 @@ status() { \
 
 case "$1" in
     i*) init ;;
+    u*) uninstall ;;
     r*) resume ;;
     p*) pause ;;
     s*) status ;;
-    *) printf "Usage:\n eye i:\t initialize\n eye r:\t resume\n eye p:\t pause\n eye s:\t status\n" ;;
+    *) printf "Usage:\n eye i:\t initialize\n eye u:\t uninstall\n eye r:\t resume\n eye p:\t pause\n eye s:\t status\n" ;;
 esac
